@@ -1,0 +1,12 @@
+body {
+  background-color: aliceblue;
+}
+
+header {
+  background-color: lightseagreen;
+  color: aliceblue;
+  height: 75px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

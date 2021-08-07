@@ -1,0 +1,29 @@
+{
+  "name": "team-profile-generator",
+  "version": "1.0.0",
+  "description": "Object-Oriented Programming Project",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "jest",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JennMenji/Team-Profile-Generator.git"
+  },
+  "author": "Jenn Menjivar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JennMenji/Team-Profile-Generator/issues"
+  },
+  "homepage": "https://github.com/JennMenji/Team-Profile-Generator#readme",
+  "devDependencies": {
+    "jest": "^27.0.6"
+  },
+  "dependencies": {
+    "inquirer": "^8.1.2"
+  }
+}
