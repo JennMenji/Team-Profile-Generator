@@ -1,15 +1,9 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 const generatePage = require("./src/generate-homepage");
+const Prompt = require("inquirer/lib/prompts/base");
 
-// const Employee = require("./Employee");
-// const Manager = require("./Manager");
-// const Engineer = require("./Engineer");
-// const Intern = require("./Intern");
-// const Manager = require("./Manager");
-const team = [];
-
-const createTeam = () => {
+const createEmployee = () => {
   // This will ask for the manager info
   return inquirer.prompt([
     {
@@ -52,8 +46,14 @@ const createTeam = () => {
       },
     },
     {
+      type: "list",
+      name: "role",
+      message: "Select Employee's Role.",
+      choices: ["Manager", "Engineer", "Intern", "Employee"],
+    },
+    {
       type: "number",
-      name: "office-number",
+      name: "officenumber",
       message: "Enter the Employee's Office Number. (Required)",
       validate: (numInput) => {
         if (typeof numInput !== "number") {
@@ -64,7 +64,16 @@ const createTeam = () => {
         }
       },
     },
+    {
+      type: "confirm",
+      name: "confirmAddEmp",
+      message: "Would you like to register another Employee?",
+      default: false,
+    },
   ]);
+  // .then((basicEmployeeData) => {
+  //   promptAdditional(basicEmployeeData);
+  // });
   // .then(({ name }) => {
   //   console.log(name);
   //   this.manager = new Manager(name);
@@ -72,6 +81,88 @@ const createTeam = () => {
 
   // this.manager.getRole();
 };
+
+// const promptAdditional = (employeeData) => {
+//   console.log(employeeData);
+
+//   if (!employeeData.employees) {
+//     employeeData.employees = [];
+//   }
+
+//   const employeeArr = [];
+
+//   const role = employeeData.role;
+
+//   if (role === "Manager") {
+//     console.log("I am Manager");
+//     return inquirer
+//       .prompt([
+//         {
+//           type: "number",
+//           name: "office-number",
+//           message: "Enter the Employee's Office Number. (Required)",
+//           validate: (numInput) => {
+//             if (typeof numInput !== "number") {
+//               console.log("Please enter the Employee's Office Number.");
+//               return false;
+//             } else {
+//               return true;
+//             }
+//           },
+//         },
+//         {
+//           type: "confirm",
+//           name: "confirmAddEmp",
+//           message: "Would you like to register another Employee?",
+//           default: false,
+//         },
+//         ,
+//       ])
+//       .then((roleData) => {
+//         basicEmpData.employees.push(roleData);
+
+//         if (roleData.confirmAddEmp) {
+//           createEmployee();
+//         } else {
+//           console.log(employeeArr);
+//           return employeeArr;
+//         }
+//       });
+//   } else if (role === "Engineer") {
+//     console.log("I am Engineer");
+//   } else if (role === "Intern") {
+//     console.log("I am Intern");
+//   } else if (role === "Employee") {
+//     console.log("I am Employee");
+//   }
+
+// return (
+//   inquirer
+//     .prompt([
+//       {
+//         type: "confirm",
+//         name: "confirmAddEmp",
+//         message: "Would you like to register another Employee?",
+//         default: false,
+//       },
+//     ])
+//     // .then((role) => {
+//     //   if (role === "Manager") {
+//     //     console.log("correct");
+//     //   }
+//     // })
+//     .then((empRolesData) => {
+//       empData.roles.push(empRolesData);
+
+//       if (empRolesData.confirmAddEmp) {
+//         return promptRoles(empData);
+//       } else {
+//         console.log(empData);
+//         return empData;
+//       }
+//     })
+// );
+// };
 
 const writeFile = (fileContent) => {
   return new Promise((resolve, reject) => {
@@ -105,7 +196,11 @@ const copyFile = () => {
   });
 };
 
-createTeam()
+createEmployee()
+  // .then(promptRoles)
+  // .then((data) => {
+  //   console.log(data);
+  // });
   .then((data) => {
     return generatePage(data);
   })

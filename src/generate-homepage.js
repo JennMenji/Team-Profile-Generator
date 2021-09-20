@@ -1,16 +1,28 @@
-// // create the about section
-// const generateAbout = (aboutText) => {
-//   if (!aboutText) {
-//     return "";
-//   }
+const Employee = require("../lib/Employee");
+const Manager = require("../lib/Manager");
+const Engineer = require("../lib/Engineer");
+const Intern = require("../lib/Intern");
 
-//   return `
-//     <section class="my-3" id="about">
-//         <h2 class="text-dark bg-primary p-2 display-inline-block">About Me</h2>
-//         <p>${aboutText}</p>
-//     </section>
-//     `;
-// };
+// create the employee section
+const createEmployeeSection = (name, id, email, role, info) => {
+  if (!name) {
+    return "";
+  }
+
+  return `
+    <div class="card" style="width: 18rem">
+        <div class="card-body">
+            <h4 class="card-title">${name}</h4>
+            <h5 class="card-title">${role}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">ID: ${id}</h6>
+            <p class="card-text">
+                Email: ${email} <br>
+                Office Number: ${info.officenumber}
+            </p>
+        </div>
+    </div>
+`;
+};
 
 // const generateProjects = (projectsArr) => {
 //   return `
@@ -56,27 +68,45 @@
 // };
 
 module.exports = (templateData) => {
-  //   this will create three variables based on data on templateData
-  const { name, id } = templateData;
+  const { name, id, email, role, ...info } = templateData;
 
   return `
-        <!DOCTYPE html> 
-        <html lang="en"> 
+    <!DOCTYPE html>
+    <html lang="en">
         <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <meta http-equiv="X-UA-Compatible" content="ie=edge">
-            <title>Portfolio Demo</title>
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
-            <link href="https://fonts.googleapis.com/css?family=Public+Sans:300i,300,500&display=swap" rel="stylesheet">
-            <link rel="stylesheet" href="style.css">
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+        <!-- Bootstrap CDN Link -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+            crossorigin="anonymous"
+        />
+        <!-- Project Style Sheet -->
+        <link rel="stylesheet" href="style.css" />
+    
+        <title>Team Profiles</title>
         </head>
         <body>
         <header>
-            <div class="container flex-row justify-space-between align-center py-3">
-                <h1 class="page-title text-secondary bg-dark py-2 px-3">${name}</h1>
-         
-        `;
+            <h1>My Team</h1>
+        </header>
+        <section>
+        ${createEmployeeSection(name, id, email, role, info)}
+        </section>
+    
+        <!-- Bootstrap JS CDN Link -->
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+            crossorigin="anonymous"
+        ></script>
+        </body>
+    </html>
+    `;
 };
 
 // <nav class="flex-row">
