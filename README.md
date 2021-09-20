@@ -6,4 +6,4 @@ This is a Node.js command-line application that takes in information about emplo
 
 ## Video
 
-<iframe src="https://drive.google.com/file/d/1kNzhraINn0TSsWTfsJhpAENJD7FPFQir/preview" width="640" height="480"></iframe>
+"https://drive.google.com/file/d/1kNzhraINn0TSsWTfsJhpAENJD7FPFQir/preview"
